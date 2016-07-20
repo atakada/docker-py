@@ -6,7 +6,7 @@ from .exec_api import ExecApiMixin
 from .image import ImageApiMixin
 from .network import NetworkApiMixin
 from .service import (
-    ServiceApiMixin, TaskConfig, ContainerSpec, Mount, Resources,
+    ServiceApiMixin, TaskTemplate, ContainerSpec, Mount, Resources,
     RestartPolicy
 )
 from .volume import VolumeApiMixin

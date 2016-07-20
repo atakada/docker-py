@@ -15,18 +15,18 @@ class ServiceApiMixin(object):
 
     @utils.minimum_version('1.24')
     def create_service(
-            self, task_config, name=None, labels=None, mode=None,
-            update_config=None, networks=None, endpoint_config=None
+            self, task_template, name=None, labels=None, mode=None,
+            update_config=None, networks=None, endpoint_spec=None
     ):
         url = self._url('/services/create')
         data = {
             'Name': name,
             'Labels': labels,
-            'Task': task_config,
+            'TaskTemplate': task_template,
             'Mode': mode,
             'UpdateConfig': update_config,
             'Networks': networks,
-            'Endpoint': endpoint_config
+            'EndpointSpec': endpoint_spec
         }
         return self._result(self._post_json(url, data=data), True)
 
@@ -42,7 +42,7 @@ class ServiceApiMixin(object):
         self._raise_for_status(resp)
 
 
-class TaskConfig(dict):
+class TaskTemplate(dict):
     def __init__(self, container_spec, resources=None, restart_policy=None,
                  placement=None):
         self['ContainerSpec'] = container_spec
